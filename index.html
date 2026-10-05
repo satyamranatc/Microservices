@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="hi-Latn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Microservices Kya Hote Hain? Bilkul Zero Se Ek Masterclass</title>
+  <meta name="description" content="Microservices architecture ko bilkul shuru se, aasan Hinglish bhasha mein samajhiye. Ek teacher ki tarah step-by-step bina kisi complex jargon ke.">
+  
+  <!-- Typography from Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Minimal Header -->
+  <header class="site-header">
+    <div class="header-inner">
+      <span class="site-mark">Engineering Ki Buniyad</span>
+      <div class="reading-meta">
+        <span>Kist 04</span>
+        <span>14 min padhne ka samay</span>
+        <span>Foundational Guide</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Article Body -->
+  <main class="article-container">
+    <article>
+      
+      <header class="article-header">
+        <span class="topic-label">Software Architecture Simplified</span>
+        <h1 class="article-title">Microservices Kya Hote Hain? Bilkul Zero Se Ek Masterclass</h1>
+        <p class="article-subtitle">Bina kisi complex technical jargon ya hype ke — aasan Hinglish mein samajhiye ki aakhir badi tech companies apni applications ko kaise design karti hain.</p>
+        
+        <div class="author-block">
+          <div class="author-avatar">EP</div>
+          <div class="author-details">
+            <strong>The Engineering Pedagogue</strong>
+            <span>Naye learners aur curious developers ke liye likha gaya lekh</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Introduction -->
+      <section>
+        <p class="lead-paragraph">
+          Agar aap software development ya tech ki duniya mein naye hain, toh aapne <em>microservices</em> shabd zaroor suna hoga. Log isse aise bolte hain jaise ye koi jaadu ki chhadi ho jisse har software problem hal ho jaati hai. Lekin agar aap kisi se seedhe shabdon mein poochhein ki "Bhai, aasan bhasha mein batao ye aakhir hai kya?", toh zyadatar log ghuma-phira kar jargon bolne lagte hain — jaise "loosely coupled", "scalability", ya "service mesh".
+        </p>
+        
+        <p>
+          Aaiye aaj in saare bhaari-bharkam shabdon ko ek taraf rakhte hain. Aaj ka hamara maqsad ye hai ki hum microservices ko bilkul zero se samjhein. Hum ye maan kar chalenge ki aapne pehle kabhi servers manage nahi kiye hain aur na hi cloud infrastructure dekha hai. Hum ek chote se program se shuru karenge, dekhenge ki jab wo bada hota hai toh kahan rukawat aati hai, aur phir samjhenge ki software ko alag-alag tukdon mein baantna kyun zaroori ho gaya.
+        </p>
+
+        <div class="teacher-callout">
+          <div class="callout-header">Ustaad Ka Niyam (The Guiding Principle)</div>
+          <p>
+            Software architecture mein kabhi bhi koi "best" tareeka nahi hota. Har design kisi na kisi trade-off (samjhaute) par tikka hota hai. Microservices koi medal ya fashion nahi hai; ye ek zaroorat ke tehat chuna gaya raasta hai jab aapka system bahut bada aur complex ho jata hai.
+          </p>
+        </div>
+      </section>
+
+      <!-- Section 1: Monolith -->
+      <section>
+        <h2><span class="heading-num">01.</span> Kahani Ki Shuruat: Monolith Kya Hota Hai?</h2>
+        
+        <p>
+          Microservices ko samajhne se pehle aapko us cheez ko samajhna padega jisko hatane ke liye microservices banaye gaye. Us purane tareeke ko hum kehte hain: <strong>Monolith</strong> (Monolithic Architecture).
+        </p>
+
+        <p>
+          Greek bhasha mein <em>monolith</em> ka matlab hota hai "ek bada, akhand patthar". Software engineering mein Monolith ka matlab ek aisi application hai jiska saara code, saare features, aur saari file ek hi jagah, ek hi project folder mein rehti hain.
+        </p>
+
+        <div class="analogy-card">
+          <span class="analogy-badge">Asli Zindagi Ki Misaal</span>
+          <div class="analogy-title">Mohalle Ki Choti Bakery</div>
+          <p>
+            Maan lijiye aapke mohalle mein ek choti si bakery hai jise Ramesh akele chalata hai. Us ek hi kamre ki dukaan mein Ramesh saara kaam karta hai: counter par customer se order leta hai, piche jaakar aate aur maide ko goondhta hai, oven mein cake bake karta hai, dibbe pack karta hai, aur galle mein paise rakhta hai.
+          </p>
+          <p style="margin-top: 12px;">
+            Sab kuch ek hi chhat ke niche hai. Jab koi customer aakar kehta hai "Bhaiya, ek pound cake dena", toh Ramesh ko kisi ko phone karne ya chitthi likhne ki zaroorat nahi padti. Wo turant do kadam piche mudta hai, cake nikalta hai, paise leta hai aur apni diary mein likh leta hai. Ye tareeka tez hai, aasan hai, aur isme koi jhanjhat nahi hai.
+          </p>
+        </div>
+
+        <p>
+          Software ki duniya mein bhi har application shuruat mein aisi hi banti hai:
+        </p>
+
+        <ul>
+          <li><strong>Frontend:</strong> Jo screen user ko dikhti hai (buttons, forms, pages).</li>
+          <li><strong>Business Logic:</strong> Wo code jo calculation karta hai (jaise discount lagana, password check karna).</li>
+          <li><strong>Database Access:</strong> Wo code jo ek single database se data padhta aur save karta hai.</li>
+        </ul>
+
+        <p>
+          Ye saara code ek hi project mein hota hai. Jab developers ko website live karni hoti hai, toh wo ek single file bana kar ek server par chala dete hain. Shuruat ke liye ye tareeka sabse behtareen aur asardaar hota hai.
+        </p>
+      </section>
+
+      <!-- Section 2: Cracks in Monolith -->
+      <section>
+        <h2><span class="heading-num">02.</span> Jab Dukaan Badi Hoti Hai: Monolith Ki Dikkat</h2>
+        
+        <p>
+          Agar Monolith itna aasan aur seedha hai, toh log isse pareshan kyun hue?
+        </p>
+
+        <p>
+          Kyunki jab koi cheez choti hoti hai toh chal jaati hai, lekin jab wahi cheez bahut badi ho jaati hai toh wahi simplicity ek gale ki faans ban jaati hai.
+        </p>
+
+        <p>
+          Ab sochiye ki Ramesh ki bakery ka cake itna mashhoor ho gaya ki roz subah 10,000 log dukaan ke aage line laga kar khade hone lage. Ramesh ne 25 naye helpers ko kaam par rakh liya. Lekin dukaan wahi ek hi chota kamra hai, jisme ek hi oven hai, ek hi sink hai, aur ek hi galla (cash drawer) hai.
+        </p>
+
+        <p>
+          Ab dekhiye software mein aisi haalat mein kya dikkat aati hai:
+        </p>
+
+        <div class="rule-box">
+          <span class="rule-number">Pareshani A</span>
+          <div class="rule-title">Ek Choti Galti Aur Poora System Thapp (The Blast Radius)</div>
+          <p>
+            Monolith mein saara code ek hi memory space mein daud raha hota hai. Agar naye developer ne "Customer Reviews" wale feature mein koi galti (bug) kar di jisse memory bhar gayi, toh na sirf reviews wala hissa band hoga, balki poori website crash ho jayegi! Log checkout nahi kar payenge, payment fail ho jayegi, aur company ka lakhoon ka nuksaan ho jayega. Ek choti si galti ne poore jahaz ko duba diya.
+          </p>
+        </div>
+
+        <div class="rule-box">
+          <span class="rule-number">Pareshani B</span>
+          <div class="rule-title">Scaling Ka Bekaar Kharcha (Inflexible Scaling)</div>
+          <p>
+            Maan lijiye aapki website par 95% log sirf products ki photos scroll kar rahe hain, aur sirf 5% log actually payment kar rahe hain. Monolith mein aap sirf photo dikhane wale hisse ko alag se powerful nahi bana sakte. Agar aapko traffic sambhalna hai, toh aapko poori ki poori heavy application ko 10 naye servers par copy karna padega — jisme payment, database connection aur saare bekar features bhi double ho jayenge. Isse paisa aur resource dono barbaad hote hain.
+          </p>
+        </div>
+
+        <div class="rule-box">
+          <span class="rule-number">Pareshani C</span>
+          <div class="rule-title">Engineers Ka Traffic Jam (Deployment Paralysis)</div>
+          <p>
+            Jab 200 developers ek hi codebase mein kaam karte hain, toh ek doosre ke code se takraav (merge conflicts) aam baat ho jaati hai. Agar kisi engineer ko homepage par ek spelling theek karni ho, tab bhi use poore 5 lakh lines ke code ko dobara test karna padega, 2 ghante build chalana padega, aur raat ko 2 baje deployment window ka intezar karna padega taaki doosre teams ka kaam kharab na ho. Kaam ki raftaar bilkul dheemi ho jaati hai.
+          </p>
+        </div>
+
+        <div class="rule-box">
+          <span class="rule-number">Pareshani D</span>
+          <div class="rule-title">Nayi Technology Na Use Kar Paana (Tech Lock-in)</div>
+          <p>
+            Agar aapka Monolith 2015 mein Java mein likha gaya tha, toh ab aapka poora system usi par baandha hua hai. Kal ko agar Machine Learning ke liye Python ka koi zabardast tool aata hai, toh aap use asani se use nahi kar sakte, kyunki aapka poora system ek hi purani bhasha mein qaid hai.
+          </p>
+        </div>
+      </section>
+
+      <!-- Section 3: The Microservice Concept -->
+      <section>
+        <h2><span class="heading-num">03.</span> Solution: Microservices Ka Asli Concept</h2>
+        
+        <p>
+          Yahin par aati hai Microservices ki philosophy.
+        </p>
+
+        <p>
+          Ek <strong>Microservices Architecture</strong> mein hum ek badi, bheed-bhad wali application ko chote-chote, azaad (independent) hisson mein baant dete hain. Har hissa sirf aur sirf ek specific kaam karta hai, apna alag database rakhta hai, aur doosre hisson se network ke zariye baat karta hai.
+        </p>
+
+        <p>
+          Ramesh ki bakery wali misaal par wapas aaiye. Ab Ramesh ne ek hi kamre mein sabko bharne ke bajaye, road par alag-alag specialized shops khol di hain:
+        </p>
+
+        <ul>
+          <li><strong>The Pastry Workshop (Baking Service):</strong> Yahan sirf cake aur bread banti hai. Inhe customer ke payment ya delivery se koi matlab nahi hai.</li>
+          <li><strong>The Cashier Desk (Payment Service):</strong> Yahan sirf paise lene, bill kaatne aur invoice banane ka kaam hota hai.</li>
+          <li><strong>The Delivery Hub (Shipping Service):</strong> Yahan orders pack hote hain aur delivery boys ko diye jaate hain.</li>
+          <li><strong>The Accounts Office (User Profile Service):</strong> Yahan customer ki membership aur details save rehti hain.</li>
+        </ul>
+
+        <p>
+          Agar delivery hub ka packaging tape khatam ho gaya, toh pastry workshop mein cake banna band nahi hoga! Agar shaam ko achanak cake ki maang 5 guna badh gayi, toh Ramesh sirf pastry workshop mein 2 naye bhati-baker add karega, cashier counter par faltu log bithane ki zaroorat nahi padegi.
+        </p>
+
+        <div class="teacher-callout">
+          <div class="callout-header">Microservices Ke 3 Sunahare Niyam</div>
+          <p>
+            Kisi bhi system ko sach mein Microservice kehne ke liye in 3 niyamon ka hona lazmi hai:
+          </p>
+          <p>
+            <strong>1. Single Responsibility (Sirf Ek Kaam):</strong> Har service ka ek hi maksad hona chahiye (jaise sirf Payment sambhalna ya sirf Notification bhejna).<br>
+            <strong>2. Independent Deployment (Azaad Rihai):</strong> Payment team agar mangalwar ko dopahar 2 baje naya feature live karna chahti hai, toh unhe Order team ya User team se permission lene ki zaroorat nahi honi chahiye.<br>
+            <strong>3. Decentralized Database (Apna Alag Khata):</strong> Ye sabse zaroori niyam hai — har microservice ka apna personal database hota hai. Koi doosri service uske database mein direct jhank kar data chura nahi sakti.
+          </p>
+        </div>
+      </section>
+
+      <!-- Section 4: Architectural Visuals -->
+      <section>
+        <h2><span class="heading-num">04.</span> Naksha: Dono Architectures Ka Fark Dekhiye</h2>
+        
+        <p>
+          Aaiye diagram ke zariye dono models ko aamne-saamne dekhte hain. Dhyan se dekhiye ki Monolith mein database kahan hai aur Microservices mein database kaise alag-alag batte hue hain.
+        </p>
+
+        <div class="diagram-container">
+          <!-- Monolith SVG Diagram -->
+          <svg class="diagram-svg" viewBox="0 0 760 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="760" height="380" fill="transparent" />
+            
+            <text x="380" y="32" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" font-weight="700" letter-spacing="0.08em" fill="var(--text-secondary)">MODEL A: MONOLITHIC ARCHITECTURE (PURANA TAREEKA)</text>
+            <text x="380" y="52" text-anchor="middle" font-family="'Newsreader', serif" font-size="13" font-style="italic" fill="var(--text-tertiary)">Saare features ek hi dabbe mein band, ek hi shared database ke sath</text>
+
+            <!-- Client layer -->
+            <rect x="290" y="78" width="180" height="36" rx="4" fill="var(--bg-subtle)" stroke="var(--border-strong)" stroke-width="1.2" />
+            <text x="380" y="101" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="600" fill="var(--text-main)">User Screen (Mobile / Web)</text>
+
+            <!-- Arrow Down -->
+            <line x1="380" y1="114" x2="380" y2="148" stroke="var(--border-strong)" stroke-width="1.5" stroke-dasharray="3 3" />
+            <polygon points="380,154 376,146 384,146" fill="var(--border-strong)" />
+
+            <!-- The Big Monolith Box -->
+            <rect x="150" y="156" width="460" height="110" rx="6" fill="var(--bg-subtle)" stroke="var(--accent-editorial)" stroke-width="1.8" />
+            <text x="172" y="180" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="700" letter-spacing="0.06em" fill="var(--accent-editorial)">EK HI SINGLE APPLICATION (SAARA CODE EK SATH)</text>
+
+            <!-- Inner Modules -->
+            <rect x="170" y="196" width="94" height="52" rx="4" fill="var(--bg-surface)" stroke="var(--border-subtle)" stroke-width="1" />
+            <text x="217" y="218" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="600" fill="var(--text-main)">User Auth</text>
+            <text x="217" y="234" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" fill="var(--text-tertiary)">Hissa 1</text>
+
+            <rect x="278" y="196" width="94" height="52" rx="4" fill="var(--bg-surface)" stroke="var(--border-subtle)" stroke-width="1" />
+            <text x="325" y="218" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="600" fill="var(--text-main)">Orders</text>
+            <text x="325" y="234" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" fill="var(--text-tertiary)">Hissa 2</text>
+
+            <rect x="386" y="196" width="94" height="52" rx="4" fill="var(--bg-surface)" stroke="var(--border-subtle)" stroke-width="1" />
+            <text x="433" y="218" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="600" fill="var(--text-main)">Payments</text>
+            <text x="433" y="234" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" fill="var(--text-tertiary)">Hissa 3</text>
+
+            <rect x="494" y="196" width="96" height="52" rx="4" fill="var(--bg-surface)" stroke="var(--border-subtle)" stroke-width="1" />
+            <text x="542" y="218" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="600" fill="var(--text-main)">Shipping</text>
+            <text x="542" y="234" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" fill="var(--text-tertiary)">Hissa 4</text>
+
+            <!-- Arrow to DB -->
+            <line x1="380" y1="266" x2="380" y2="298" stroke="var(--border-strong)" stroke-width="1.5" />
+            <polygon points="380,304 376,296 384,296" fill="var(--border-strong)" />
+
+            <!-- Single Database -->
+            <rect x="270" y="306" width="220" height="48" rx="24" fill="var(--bg-surface)" stroke="var(--border-strong)" stroke-width="1.4" />
+            <text x="380" y="328" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="600" fill="var(--text-main)">Ek Hi Central Database</text>
+            <text x="380" y="343" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" fill="var(--text-tertiary)">Sabhi tables ek hi jagah shared hain</text>
+          </svg>
+          <p class="diagram-caption">Tasveer 1.1: Monolith mein agar koi ek hissa bhi crash hota hai ya database atakta hai, toh poori application ruk jaati hai.</p>
+        </div>
+
+        <div class="diagram-container">
+          <!-- Microservices SVG Diagram -->
+          <svg class="diagram-svg" viewBox="0 0 760 440" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="760" height="440" fill="transparent" />
+            
+            <text x="380" y="32" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" font-weight="700" letter-spacing="0.08em" fill="var(--accent-editorial)">MODEL B: MICROSERVICES ARCHITECTURE (MODERN TAREEKA)</text>
+            <text x="380" y="52" text-anchor="middle" font-family="'Newsreader', serif" font-size="13" font-style="italic" fill="var(--text-tertiary)">Har service azaad hai, apna alag database rakhti hai, API Gateway se judti hai</text>
+
+            <!-- Client layer -->
+            <rect x="290" y="72" width="180" height="34" rx="4" fill="var(--bg-subtle)" stroke="var(--border-strong)" stroke-width="1.2" />
+            <text x="380" y="94" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="600" fill="var(--text-main)">User Screen (Mobile / Web)</text>
+
+            <!-- Arrow to Gateway -->
+            <line x1="380" y1="106" x2="380" y2="132" stroke="var(--border-strong)" stroke-width="1.5" />
+            <polygon points="380,137 376,129 384,129" fill="var(--border-strong)" />
+
+            <!-- API Gateway -->
+            <rect x="220" y="138" width="320" height="34" rx="4" fill="var(--accent-soft)" stroke="var(--accent-border)" stroke-width="1.2" />
+            <text x="380" y="160" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="700" letter-spacing="0.04em" fill="var(--accent-editorial)">API GATEWAY (ROUTER / TRAFFIC POLICE)</text>
+
+            <!-- Lines from Gateway to 4 Services -->
+            <path d="M 280 172 L 130 216" stroke="var(--border-strong)" stroke-width="1.2" />
+            <path d="M 345 172 L 295 216" stroke="var(--border-strong)" stroke-width="1.2" />
+            <path d="M 415 172 L 465 216" stroke="var(--border-strong)" stroke-width="1.2" />
+            <path d="M 480 172 L 630 216" stroke="var(--border-strong)" stroke-width="1.2" />
+
+            <!-- Service 1: Auth -->
+            <g transform="translate(60, 218)">
+              <rect x="0" y="0" width="140" height="74" rx="4" fill="var(--bg-surface)" stroke="var(--border-strong)" stroke-width="1.2" />
+              <text x="70" y="24" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="700" fill="var(--text-main)">Auth Service</text>
+              <text x="70" y="42" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" fill="var(--text-tertiary)">Node.js / Go</text>
+              <text x="70" y="60" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" fill="var(--accent-warm)">Login & Identity</text>
+              
+              <line x1="70" y1="74" x2="70" y2="102" stroke="var(--border-strong)" stroke-width="1.2" />
+              <rect x="15" y="104" width="110" height="34" rx="6" fill="var(--bg-subtle)" stroke="var(--border-strong)" stroke-width="1" />
+              <text x="70" y="125" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="600" fill="var(--text-secondary)">Users DB</text>
+            </g>
+
+            <!-- Service 2: Orders -->
+            <g transform="translate(225, 218)">
+              <rect x="0" y="0" width="140" height="74" rx="4" fill="var(--bg-surface)" stroke="var(--border-strong)" stroke-width="1.2" />
+              <text x="70" y="24" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="700" fill="var(--text-main)">Order Service</text>
+              <text x="70" y="42" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" fill="var(--text-tertiary)">Java / Spring</text>
+              <text x="70" y="60" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" fill="var(--accent-warm)">Cart & Items</text>
+
+              <line x1="70" y1="74" x2="70" y2="102" stroke="var(--border-strong)" stroke-width="1.2" />
+              <rect x="15" y="104" width="110" height="34" rx="6" fill="var(--bg-subtle)" stroke="var(--border-strong)" stroke-width="1" />
+              <text x="70" y="125" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="600" fill="var(--text-secondary)">Orders DB</text>
+            </g>
+
+            <!-- Service 3: Payments -->
+            <g transform="translate(395, 218)">
+              <rect x="0" y="0" width="140" height="74" rx="4" fill="var(--bg-surface)" stroke="var(--border-strong)" stroke-width="1.2" />
+              <text x="70" y="24" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="700" fill="var(--text-main)">Payment Service</text>
+              <text x="70" y="42" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" fill="var(--text-tertiary)">Rust / Elixir</text>
+              <text x="70" y="60" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" fill="var(--accent-warm)">Bank & UPI</text>
+
+              <line x1="70" y1="74" x2="70" y2="102" stroke="var(--border-strong)" stroke-width="1.2" />
+              <rect x="15" y="104" width="110" height="34" rx="6" fill="var(--bg-subtle)" stroke="var(--border-strong)" stroke-width="1" />
+              <text x="70" y="125" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="600" fill="var(--text-secondary)">Ledger DB</text>
+            </g>
+
+            <!-- Service 4: Shipping -->
+            <g transform="translate(560, 218)">
+              <rect x="0" y="0" width="140" height="74" rx="4" fill="var(--bg-surface)" stroke="var(--border-strong)" stroke-width="1.2" />
+              <text x="70" y="24" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="700" fill="var(--text-main)">Shipping Service</text>
+              <text x="70" y="42" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" fill="var(--text-tertiary)">Python / FastAPI</text>
+              <text x="70" y="60" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" fill="var(--accent-warm)">Tracking & Labels</text>
+
+              <line x1="70" y1="74" x2="70" y2="102" stroke="var(--border-strong)" stroke-width="1.2" />
+              <rect x="15" y="104" width="110" height="34" rx="6" fill="var(--bg-subtle)" stroke="var(--border-strong)" stroke-width="1" />
+              <text x="70" y="125" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="600" fill="var(--text-secondary)">Logistics DB</text>
+            </g>
+
+            <!-- Asynchronous Event Bus Line at Bottom -->
+            <line x1="130" y1="395" x2="630" y2="395" stroke="var(--border-strong)" stroke-width="1.5" stroke-dasharray="4 4" />
+            <text x="380" y="420" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" fill="var(--text-tertiary)">Asynchronous Event Stream (e.g. Apache Kafka ya RabbitMQ)</text>
+          </svg>
+          <p class="diagram-caption">Tasveer 1.2: Microservices mein har service ke paas apna personal database hota hai. Koi doosra usme seedha hath nahi daal sakta.</p>
+        </div>
+      </section>
+
+      <!-- Section 5: How they talk -->
+      <section>
+        <h2><span class="heading-num">05.</span> Ye Services Aapas Mein Baat Kaise Karti Hain?</h2>
+        
+        <p>
+          Ab aapke dimaag mein ek swabhavik sawal aayega: agar sab kuch alag-alag computer par chal raha hai aur sabka database alag hai, <strong>toh ye aapas mein coordinate kaise karte hain?</strong>
+        </p>
+
+        <p>
+          Monolith mein toh seedha ek function doosre function ko bula leta tha: <code>createOrder()</code> ne <code>chargePayment()</code> ko call kiya aur baat khatam. Microservices mein kyunki wo alag-alag machines par hain, unhe network ke zariye baat karni padti hai. Iske do mukhya tareeke hote hain:
+        </p>
+
+        <h3>1. Direct Phone Call (Synchronous REST / HTTP / gRPC)</h3>
+        <p>
+          Is tareeke mein ek service doosri service ko seedha network request bhejti hai aur jawab ka intezar karti hai:
+        </p>
+        <p style="padding-left: 18px; border-left: 2px solid var(--border-strong); color: var(--text-secondary);">
+          Order Service kehti hai: <em>"Bhai Payment Service, user ke account se 500 rupaye kaat lo."</em> Aur Order Service tab tak ruki rehti hai jab tak Payment Service ka reply nahi aata: <em>"Haan, paise kat gaye!"</em>
+        </p>
+        <p>
+          Ye samajhne mein aasan hai, lekin iska nuksaan ye hai ki agar Payment Service kisi wajah se dheemi chal rahi hai ya down ho gayi, toh Order Service bhi wahan atak jayegi.
+        </p>
+
+        <h3>2. Letter Box Mein Chitthi Daalna (Asynchronous Events & Queues)</h3>
+        <p>
+          Real-world mein mature companies doosra tareeka zyada pasand karti hain: Event-Driven Architecture. Yahan koi kisi ko phone karke pakad ke nahi baithta. Iske badle ek common Post Box (jaise Kafka ya RabbitMQ) hota hai.
+        </p>
+
+        <blockquote>
+          <p>"Tamam services ko suchit kiya jata hai: Order #9812 place ho chuka hai."</p>
+          <cite>— Order Service ne Event Bus par notice chipka diya</cite>
+        </blockquote>
+
+        <p>
+          Order Service turant apna kaam khatam karti hai aur user ko screen par bol deti hai: <em>"Aapka order le liya gaya hai!"</em>. Parde ke peeche ab kya hota hai:
+        </p>
+        <ul>
+          <li><strong>Payment Service</strong> ne notice dekha, bank se paise kaate, aur apna naya notice lagaya: <code>PaymentSuccessful</code>.</li>
+          <li><strong>Inventory Service</strong> ne notice dekha aur warehouse mein rakhe item ka stock 1 ghata diya.</li>
+          <li><strong>Notification Service</strong> ne notice dekha aur customer ke phone par WhatsApp message aur email bhej diya.</li>
+        </ul>
+        <p>
+          Fayda dekhiye: agar email bhejne wali service 10 minute ke liye band bhi thi, toh bhi checkout nahi ruka! Jab email service wapas start hogi, wo notice board se pending chitthi padhegi aur bhej degi. Kisi ko koi dikkat nahi aayi.
+        </p>
+      </section>
+
+      <!-- Section 6: The Dark Side -->
+      <section>
+        <h2><span class="heading-num">06.</span> Sachayi: Microservices Koi Jaadu Nahi Hain (Asli Mushkilein)</h2>
+        
+        <p>
+          Aksar YouTube tutorials aur promotional blogs yahan aakar ruk jaate hain, jaise Microservices se behtar duniya mein kuch hai hi nahi. Ek sachhe ustaad ki tarah main aapko iska doosra rukh bhi bataunga:
+        </p>
+
+        <p>
+          <strong>Microservices complexity ko khatam nahi karte, wo bas complexity ki jagah badal dete hain.</strong>
+        </p>
+
+        <p>
+          Aap code ki complexity ko kam karke network aur infrastructure ki complexity badha lete hain. Jab aap 20 alag-alag microservices chalate hain, toh ye naye sir-dard shuru hote hain:
+        </p>
+
+        <div class="comparison-grid">
+          <div class="comparison-column">
+            <div class="column-title monolith">Monolith Ki Asani</div>
+            <ul>
+              <li><strong>Local Memory Call:</strong> Function call microseconds mein execute hota hai. Kabhi koi network cable kharab nahi hoti.</li>
+              <li><strong>Simple Database:</strong> Agar order fail hua, toh database ek SQL transaction mein sab kuch rollback kar deta hai.</li>
+              <li><strong>Ek Jagah Deployment:</strong> Ek file build karo, ek server par daal do. Padhne aur test karne mein asani.</li>
+              <li><strong>Easy Debugging:</strong> Ek error aane par pura stack trace ek hi file mein mil jata hai ki kaunsi line par bug hai.</li>
+            </ul>
+          </div>
+
+          <div class="comparison-column">
+            <div class="column-title microservice">Microservices Ki Musibat</div>
+            <ul>
+              <li><strong>Network Latency:</strong> Har call network ke raste se jaati hai. Internet ka drop hona ya timeout hona aam baat hai.</li>
+              <li><strong>Data Consistency:</strong> Kyunki dono databases alag hain, aap simple SQL JOIN nahi chala sakte. Data match karna mushkil ho jata hai.</li>
+              <li><strong>DevOps Ka Bojh:</strong> Ab aapko 1 server nahi, balki 25 alag-alag containers, unke security, aur health check sambhalne padte hain.</li>
+              <li><strong>Bhatakta Hua Debugging:</strong> Ek request fail hui toh aapko 10 alag-alag servers ke log files check karne padte hain ki aakhir kaunsi service mein error aaya tha.</li>
+            </ul>
+          </div>
+        </div>
+
+        <p>
+          Famous software architect Martin Fowler ne is baare mein ek mashhoor niyam diya tha:
+        </p>
+
+        <blockquote>
+          <p>
+            "Aapko tab tak microservices ke baare mein sochna bhi nahi chahiye, jab tak aapka system itna bada aur complex na ho jaye ki use Monolith ki tarah sambhalna namumkin ho."
+          </p>
+          <cite>— Martin Fowler, Author of Refactoring and Enterprise Software Architecture</cite>
+        </blockquote>
+      </section>
+
+      <!-- Section 7: Litmus Test -->
+      <section>
+        <h2><span class="heading-num">07.</span> Faisla Kaise Karein: Aapko Kya Chunna Chahiye?</h2>
+
+        <p>
+          Agar aap naya project shuru kar rahe hain ya kisi company mein architecture chun rahe hain, toh is aasan table se faisla kijiye:
+        </p>
+
+        <div class="editorial-table-wrapper">
+          <table class="editorial-table">
+            <thead>
+              <tr>
+                <th style="width: 25%;">Paimana (Criteria)</th>
+                <th style="width: 37%;">Monolith Chuniye</th>
+                <th style="width: 38%;">Microservices Chuniye</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Team Ka Size</strong></td>
+                <td>Choti team (1 se 15 developers) jo aapas mein roz direct baat karti hai.</td>
+                <td>Badi engineering team (50+ se 500+ log) jo alag-alag office ya shehar mein hain.</td>
+              </tr>
+              <tr>
+                <td><strong>Product Ki Stage</strong></td>
+                <td>Naya startup, MVP, ya naya idea jisme agle hafte features badal sakte hain.</td>
+                <td>Established business jahan features ke boundaries (Payment, Shipping, Catalog) pakke hain.</td>
+              </tr>
+              <tr>
+                <td><strong>Traffic Volume</strong></td>
+                <td>Normal ya predictable traffic jo aam server se aram se handle ho jata hai.</td>
+                <td>Lakhoon-crodon users, jahan kisi ek feature par achanak 100 guna traffic aa jata hai.</td>
+              </tr>
+              <tr>
+                <td><strong>Infrastructure Team</strong></td>
+                <td>Koyi dedicated DevOps team nahi hai; developers hi server dekh rahe hain.</td>
+                <td>Dedicated Cloud & DevOps team jo Kubernetes, Docker aur distributed tracing sambhalti hai.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>
+          Duniya ki sabse badi websites jaise <strong>Shopify, GitHub, Stack Overflow, aur Basecamp</strong> ne saalon-saal apna poora business Monolith par chalaya hai aur aaj bhi unka bohot bada hissa Monolith par hi chalta hai. Unhone day one par microservices nahi banaye the; unhone scale ke sath zaroorat aane par dheere-dheere unhe apnaya.
+        </p>
+      </section>
+
+      <!-- Pocket Summary Card -->
+      <section class="summary-card">
+        <h3>Aapki Jeb Ke Notes (Pocket Revision)</h3>
+        <p style="color: var(--text-secondary); margin-bottom: 20px;">
+          Agar aap is poore lekh se sirf 5 baatein yaad rakhna chahein, toh ye 5 baatein yaad rakhiye:
+        </p>
+        <ol>
+          <li>
+            <strong>Monolith ek bada dabba hai:</strong> Saare features ek hi application mein rehte hain aur ek hi database use karte hain. Naye projects ke liye yahi sabse best aur tezz shuruat hai.
+          </li>
+          <li>
+            <strong>Microservice ek azaad specialist hai:</strong> Ye ek choti alag application hoti hai jo sirf ek specific kaam karti hai aur apna personal database rakhti hai.
+          </li>
+          <li>
+            <strong>Database kabhi share nahi hota:</strong> Agar Service A ko Service B ka data chahiye, toh wo API ke zariye maangegi. Wo doosri service ke database table mein direct query nahi maar sakti.
+          </li>
+          <li>
+            <strong>Baatcheet do tarah se hoti hai:</strong> Ya toh direct phone call (REST/HTTP) ya phir notice board par message chhod kar (Kafka/RabbitMQ events).
+          </li>
+          <li>
+            <strong>Ye teams ki azaadi ka tool hai:</strong> Badi companies microservices isliye nahi banati ki code fast ho jaye, balki isliye banati hain taaki 50 alag-alag teams ek doosre ke kaam mein rukaavat dale bina tezi se ship kar sakein.
+          </li>
+        </ol>
+      </section>
+
+    </article>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span>Engineering Ki Buniyad Series</span>
+      <span>Shanti se, bina kisi shor ke padhne ke liye banaya gaya lekh</span>
+    </div>
+  </footer>
+
+</body>
+</html>
