@@ -152,6 +152,94 @@
             Agar aapka Monolith 2015 mein Java mein likha gaya tha, toh ab aapka poora system usi par baandha hua hai. Kal ko agar Machine Learning ke liye Python ka koi zabardast tool aata hai, toh aap use asani se use nahi kar sakte, kyunki aapka poora system ek hi purani bhasha mein qaid hai.
           </p>
         </div>
+
+        <!-- Diagram 1: Blast Radius & Failure Isolation -->
+        <div class="diagram-container">
+          <svg class="diagram-svg" viewBox="0 0 760 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="760" height="380" fill="transparent" />
+            
+            <!-- Title -->
+            <text x="380" y="30" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" font-weight="700" letter-spacing="0.08em" fill="var(--text-secondary)">VISUAL COMPARISON: BLAST RADIUS & FAULT ISOLATION</text>
+            <text x="380" y="50" text-anchor="middle" font-family="'Newsreader', serif" font-size="13" font-style="italic" fill="var(--text-tertiary)">Monolith mein ek chota bug sab kuch gira deta hai; Microservices mein baki business bina ruke chalta hai</text>
+
+            <!-- LEFT PANEL: MONOLITH CRASH -->
+            <g transform="translate(30, 70)">
+              <!-- Outer Process Container -->
+              <rect x="0" y="0" width="335" height="246" rx="6" fill="var(--status-fail-bg)" stroke="var(--status-fail)" stroke-width="1.4" stroke-dasharray="4 3" />
+              <rect x="0" y="0" width="335" height="28" rx="4" fill="var(--status-fail)" />
+              <text x="167" y="18" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="700" letter-spacing="0.05em" fill="#FFFFFF">MONOLITH: UNBOUNDED BLAST RADIUS</text>
+              <text x="167" y="46" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" fill="var(--text-tertiary)">Single OS Process (Shared RAM)</text>
+
+              <!-- Modules inside Monolith -->
+              <rect x="18" y="60" width="142" height="42" rx="4" fill="var(--bg-surface)" stroke="var(--status-fail-border)" stroke-width="1" />
+              <text x="89" y="80" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="600" fill="var(--text-main)">User Login</text>
+              <text x="89" y="93" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8" fill="var(--status-fail)">⚠️ Stalled</text>
+
+              <rect x="175" y="60" width="142" height="42" rx="4" fill="var(--bg-surface)" stroke="var(--status-fail-border)" stroke-width="1" />
+              <text x="246" y="80" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="600" fill="var(--text-main)">Cart & Orders</text>
+              <text x="246" y="93" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8" fill="var(--status-fail)">⚠️ Stalled</text>
+
+              <rect x="18" y="112" width="142" height="42" rx="4" fill="var(--bg-surface)" stroke="var(--status-fail-border)" stroke-width="1" />
+              <text x="89" y="132" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="600" fill="var(--text-main)">Payment Engine</text>
+              <text x="89" y="145" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8" fill="var(--status-fail)">⚠️ Stalled</text>
+
+              <!-- Reviews Module (CRASH SOURCE) -->
+              <rect x="175" y="112" width="142" height="42" rx="4" fill="var(--status-fail)" stroke="var(--status-fail)" stroke-width="1" />
+              <text x="246" y="130" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="700" fill="#FFFFFF">Customer Reviews</text>
+              <text x="246" y="145" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8" font-weight="600" fill="#FFFFFF">💥 Out of Memory Bug!</text>
+
+              <!-- Monolith Crash Banner -->
+              <rect x="18" y="166" width="299" height="66" rx="4" fill="var(--bg-surface)" stroke="var(--status-fail)" stroke-width="1.2" />
+              <text x="167" y="186" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="700" fill="var(--status-fail)">🔥 ENTIRE PROCESS CRASHED (OOM)</text>
+              <text x="167" y="204" text-anchor="middle" font-family="'Newsreader', serif" font-size="11" font-style="italic" fill="var(--text-secondary)">Reviews ke bug ne Checkout aur Payment bhi band kar diya</text>
+              <text x="167" y="222" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" fill="var(--text-tertiary)">HTTP 500: Server Down For All Users</text>
+
+              <!-- Result Pill -->
+              <rect x="18" y="254" width="299" height="30" rx="15" fill="var(--status-fail-bg)" stroke="var(--status-fail-border)" stroke-width="1.2" />
+              <text x="167" y="273" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="700" fill="var(--status-fail)">STATUS: 100% COMPLETE OUTAGE</text>
+            </g>
+
+            <!-- RIGHT PANEL: MICROSERVICES ISOLATED FAILURE -->
+            <g transform="translate(395, 70)">
+              <!-- Outer Cluster Container -->
+              <rect x="0" y="0" width="335" height="246" rx="6" fill="var(--bg-subtle)" stroke="var(--border-strong)" stroke-width="1.2" />
+              <rect x="0" y="0" width="335" height="28" rx="4" fill="var(--accent-editorial)" />
+              <text x="167" y="18" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="700" letter-spacing="0.05em" fill="#FFFFFF">MICROSERVICES: FAULT ISOLATION</text>
+              <text x="167" y="46" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" fill="var(--text-tertiary)">Independent Containers / Separate Memory</text>
+
+              <!-- Service 1: Auth (Healthy) -->
+              <rect x="18" y="60" width="142" height="42" rx="4" fill="var(--status-pass-bg)" stroke="var(--status-pass-border)" stroke-width="1" />
+              <text x="89" y="80" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="600" fill="var(--status-pass)">Auth Service</text>
+              <text x="89" y="93" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8" fill="var(--status-pass)">✅ 100% Online</text>
+
+              <!-- Service 2: Cart/Order (Healthy) -->
+              <rect x="175" y="60" width="142" height="42" rx="4" fill="var(--status-pass-bg)" stroke="var(--status-pass-border)" stroke-width="1" />
+              <text x="246" y="80" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="600" fill="var(--status-pass)">Order Service</text>
+              <text x="246" y="93" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8" fill="var(--status-pass)">✅ 100% Online</text>
+
+              <!-- Service 3: Payment (Healthy) -->
+              <rect x="18" y="112" width="142" height="42" rx="4" fill="var(--status-pass-bg)" stroke="var(--status-pass-border)" stroke-width="1" />
+              <text x="89" y="132" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="600" fill="var(--status-pass)">Payment Service</text>
+              <text x="89" y="145" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8" fill="var(--status-pass)">✅ 100% Online</text>
+
+              <!-- Service 4: Reviews (Crashed, Isolated) -->
+              <rect x="175" y="112" width="142" height="42" rx="4" fill="var(--status-fail-bg)" stroke="var(--status-fail)" stroke-width="1.3" stroke-dasharray="3 2" />
+              <text x="246" y="130" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="700" fill="var(--status-fail)">Review Service</text>
+              <text x="246" y="145" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8" font-weight="600" fill="var(--status-fail)">❌ Isolated Crash</text>
+
+              <!-- Microservices Resilient Banner -->
+              <rect x="18" y="166" width="299" height="66" rx="4" fill="var(--bg-surface)" stroke="var(--status-pass-border)" stroke-width="1.2" />
+              <text x="167" y="186" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="700" fill="var(--status-pass)">🛡️ FAULT CONTAINED & AUTO-RESTARTING</text>
+              <text x="167" y="204" text-anchor="middle" font-family="'Newsreader', serif" font-size="11" font-style="italic" fill="var(--text-secondary)">Customer cart & payment kar sakta hai; vyapar chalu hai</text>
+              <text x="167" y="222" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" fill="var(--text-tertiary)">Kubernetes pod restarting in background</text>
+
+              <!-- Result Pill -->
+              <rect x="18" y="254" width="299" height="30" rx="15" fill="var(--status-pass-bg)" stroke="var(--status-pass-border)" stroke-width="1.2" />
+              <text x="167" y="273" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="700" fill="var(--status-pass)">STATUS: 90% UP (GRACEFUL DEGRADATION)</text>
+            </g>
+          </svg>
+          <p class="diagram-caption">Tasveer 1: Blast Radius — Monolith mein ek chote feature ki galti se poora server thapp ho jata hai; Microservices mein sirf wahi hissa rukta hai jabki core customer checkout chalta rehta hai.</p>
+        </div>
       </section>
 
       <!-- Section 3: The Microservice Concept -->
@@ -248,7 +336,7 @@
             <text x="380" y="328" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="600" fill="var(--text-main)">Ek Hi Central Database</text>
             <text x="380" y="343" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" fill="var(--text-tertiary)">Sabhi tables ek hi jagah shared hain</text>
           </svg>
-          <p class="diagram-caption">Tasveer 1.1: Monolith mein agar koi ek hissa bhi crash hota hai ya database atakta hai, toh poori application ruk jaati hai.</p>
+          <p class="diagram-caption">Tasveer 2: Model A (Monolith) — Agar koi ek hissa bhi crash hota hai ya database atakta hai, toh poori application ruk jaati hai.</p>
         </div>
 
         <div class="diagram-container">
@@ -271,11 +359,22 @@
             <rect x="220" y="138" width="320" height="34" rx="4" fill="var(--accent-soft)" stroke="var(--accent-border)" stroke-width="1.2" />
             <text x="380" y="160" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="700" letter-spacing="0.04em" fill="var(--accent-editorial)">API GATEWAY (ROUTER / TRAFFIC POLICE)</text>
 
-            <!-- Lines from Gateway to 4 Services -->
-            <path d="M 280 172 L 130 216" stroke="var(--border-strong)" stroke-width="1.2" />
-            <path d="M 345 172 L 295 216" stroke="var(--border-strong)" stroke-width="1.2" />
-            <path d="M 415 172 L 465 216" stroke="var(--border-strong)" stroke-width="1.2" />
-            <path d="M 480 172 L 630 216" stroke="var(--border-strong)" stroke-width="1.2" />
+            <!-- Lines and Arrows from Gateway to 4 Services -->
+            <line x1="280" y1="172" x2="134" y2="213" stroke="var(--border-strong)" stroke-width="1.3" />
+            <polygon points="130,217 138,211 135,219" fill="var(--border-strong)" />
+            <text x="180" y="190" font-family="'JetBrains Mono', monospace" font-size="8" fill="var(--text-tertiary)">/auth</text>
+
+            <line x1="345" y1="172" x2="299" y2="213" stroke="var(--border-strong)" stroke-width="1.3" />
+            <polygon points="295,217 304,213 299,221" fill="var(--border-strong)" />
+            <text x="306" y="190" font-family="'JetBrains Mono', monospace" font-size="8" fill="var(--text-tertiary)">/orders</text>
+
+            <line x1="415" y1="172" x2="461" y2="213" stroke="var(--border-strong)" stroke-width="1.3" />
+            <polygon points="465,217 461,221 457,213" fill="var(--border-strong)" />
+            <text x="445" y="190" font-family="'JetBrains Mono', monospace" font-size="8" fill="var(--text-tertiary)">/pay</text>
+
+            <line x1="480" y1="172" x2="626" y2="213" stroke="var(--border-strong)" stroke-width="1.3" />
+            <polygon points="630,217 625,219 622,211" fill="var(--border-strong)" />
+            <text x="565" y="190" font-family="'JetBrains Mono', monospace" font-size="8" fill="var(--text-tertiary)">/ship</text>
 
             <!-- Service 1: Auth -->
             <g transform="translate(60, 218)">
@@ -329,7 +428,7 @@
             <line x1="130" y1="395" x2="630" y2="395" stroke="var(--border-strong)" stroke-width="1.5" stroke-dasharray="4 4" />
             <text x="380" y="420" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" fill="var(--text-tertiary)">Asynchronous Event Stream (e.g. Apache Kafka ya RabbitMQ)</text>
           </svg>
-          <p class="diagram-caption">Tasveer 1.2: Microservices mein har service ke paas apna personal database hota hai. Koi doosra usme seedha hath nahi daal sakta.</p>
+          <p class="diagram-caption">Tasveer 3: Model B (Microservices) — Har service ke paas apna personal database hota hai. Koi doosra usme seedha hath nahi daal sakta.</p>
         </div>
       </section>
 
@@ -377,6 +476,139 @@
         <p>
           Fayda dekhiye: agar email bhejne wali service 10 minute ke liye band bhi thi, toh bhi checkout nahi ruka! Jab email service wapas start hogi, wo notice board se pending chitthi padhegi aur bhej degi. Kisi ko koi dikkat nahi aayi.
         </p>
+
+        <!-- Diagram 4: Inter-Service Communication Patterns -->
+        <div class="diagram-container">
+          <svg class="diagram-svg" viewBox="0 0 760 520" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="760" height="520" fill="transparent" />
+
+            <!-- Diagram Header -->
+            <text x="380" y="28" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" font-weight="700" letter-spacing="0.08em" fill="var(--text-secondary)">COMMUNICATION PATTERNS: SYNC VS ASYNC</text>
+            <text x="380" y="48" text-anchor="middle" font-family="'Newsreader', serif" font-size="13" font-style="italic" fill="var(--text-tertiary)">Direct Phone Call (Synchronous REST) banam Notice Board (Asynchronous Event Broker)</text>
+
+            <!-- SECTION 1: SYNCHRONOUS REST (BLOCKING) -->
+            <g transform="translate(30, 68)">
+              <rect x="0" y="0" width="700" height="195" rx="6" fill="var(--bg-surface)" stroke="var(--border-strong)" stroke-width="1.2" />
+              
+              <!-- Banner header -->
+              <rect x="0" y="0" width="700" height="26" rx="4" fill="var(--bg-subtle)" />
+              <text x="16" y="17" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="700" letter-spacing="0.05em" fill="var(--text-secondary)">PATTERN 1: SYNCHRONOUS REST / HTTP (DIRECT PHONE CALL - BLOCKING)</text>
+
+              <!-- Step 1: User Client -->
+              <rect x="20" y="42" width="105" height="54" rx="4" fill="var(--bg-subtle)" stroke="var(--border-strong)" stroke-width="1" />
+              <text x="72" y="66" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="600" fill="var(--text-main)">User Screen</text>
+              <text x="72" y="82" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8.5" fill="var(--status-warn)">⏳ Waiting...</text>
+
+              <!-- Arrow 1: Client to Order -->
+              <line x1="125" y1="69" x2="188" y2="69" stroke="var(--border-strong)" stroke-width="1.4" />
+              <polygon points="194,69 186,65 186,73" fill="var(--border-strong)" />
+              <text x="158" y="61" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8" fill="var(--text-tertiary)">1. /order</text>
+
+              <!-- Step 2: Order Service -->
+              <rect x="196" y="42" width="125" height="54" rx="4" fill="var(--bg-surface)" stroke="var(--border-strong)" stroke-width="1.2" />
+              <text x="258" y="66" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="700" fill="var(--text-main)">Order Service</text>
+              <text x="258" y="82" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8.5" fill="var(--status-warn)">⏳ Thread Blocked</text>
+
+              <!-- Arrow 2: Order to Payment -->
+              <line x1="321" y1="69" x2="384" y2="69" stroke="var(--border-strong)" stroke-width="1.4" />
+              <polygon points="390,69 382,65 382,73" fill="var(--border-strong)" />
+              <text x="354" y="61" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8" fill="var(--text-tertiary)">2. /charge</text>
+
+              <!-- Step 3: Payment Service -->
+              <rect x="392" y="42" width="125" height="54" rx="4" fill="var(--bg-surface)" stroke="var(--border-strong)" stroke-width="1.2" />
+              <text x="454" y="66" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="700" fill="var(--text-main)">Payment Service</text>
+              <text x="454" y="82" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8.5" fill="var(--status-warn)">⏳ Waiting Bank</text>
+
+              <!-- Arrow 3: Payment to Bank Gateway -->
+              <line x1="517" y1="69" x2="570" y2="69" stroke="var(--border-strong)" stroke-width="1.4" />
+              <polygon points="576,69 568,65 568,73" fill="var(--border-strong)" />
+              <text x="545" y="61" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8" fill="var(--text-tertiary)">3. API</text>
+
+              <!-- Step 4: External Bank -->
+              <rect x="578" y="42" width="102" height="54" rx="4" fill="var(--status-warn-bg)" stroke="var(--status-warn)" stroke-width="1.2" />
+              <text x="629" y="66" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="700" fill="var(--status-warn)">Bank API</text>
+              <text x="629" y="82" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8" fill="var(--status-warn)">🐢 3-5s Delay</text>
+
+              <!-- Cascade Warning Box -->
+              <rect x="20" y="112" width="660" height="66" rx="4" fill="var(--status-warn-bg)" stroke="var(--status-warn-border)" stroke-width="1" />
+              <text x="350" y="133" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="700" fill="var(--status-warn)">⚠️ CASCADING DELAY (RUKAWAT KI SHRUNKHALA)</text>
+              <text x="350" y="151" text-anchor="middle" font-family="'Newsreader', serif" font-size="11.5" font-style="italic" fill="var(--text-secondary)">Agar Bank slow hua ya Payment fail hui, toh Order Service atak jayegi aur User screen freeze ho jayegi.</text>
+              <text x="350" y="167" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8.5" fill="var(--text-tertiary)">Tightly coupled: Har service ek doosre ki speed aur availability par nirbhar hai</text>
+            </g>
+
+            <!-- SECTION 2: ASYNCHRONOUS EVENT-DRIVEN (DECOUPLED) -->
+            <g transform="translate(30, 280)">
+              <rect x="0" y="0" width="700" height="224" rx="6" fill="var(--bg-surface)" stroke="var(--border-strong)" stroke-width="1.2" />
+              
+              <!-- Banner header -->
+              <rect x="0" y="0" width="700" height="26" rx="4" fill="var(--accent-soft)" />
+              <text x="16" y="17" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="700" letter-spacing="0.05em" fill="var(--accent-editorial)">PATTERN 2: ASYNCHRONOUS EVENT-DRIVEN (NOTICE BOARD / KAFKA - NON-BLOCKING)</text>
+
+              <!-- Step 1: User Client -->
+              <rect x="20" y="42" width="105" height="52" rx="4" fill="var(--bg-subtle)" stroke="var(--border-strong)" stroke-width="1" />
+              <text x="72" y="65" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="10.5" font-weight="600" fill="var(--text-main)">User Screen</text>
+              <text x="72" y="80" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8" fill="var(--status-pass)">⚡ Fast 40ms Reply</text>
+
+              <!-- Two-way fast communication arrow -->
+              <line x1="125" y1="60" x2="162" y2="60" stroke="var(--border-strong)" stroke-width="1.3" />
+              <polygon points="167,60 160,57 160,63" fill="var(--border-strong)" />
+              <line x1="162" y1="74" x2="130" y2="74" stroke="var(--status-pass)" stroke-width="1.3" />
+              <polygon points="125,74 132,71 132,77" fill="var(--status-pass)" />
+
+              <!-- Step 2: Order Service -->
+              <rect x="170" y="42" width="118" height="52" rx="4" fill="var(--bg-surface)" stroke="var(--border-strong)" stroke-width="1.2" />
+              <text x="229" y="65" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="10.5" font-weight="700" fill="var(--text-main)">Order Service</text>
+              <text x="229" y="80" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8" fill="var(--status-pass)">Turant Azaad!</text>
+
+              <!-- Arrow from Order Service to Broker -->
+              <line x1="288" y1="68" x2="328" y2="68" stroke="var(--accent-editorial)" stroke-width="1.5" />
+              <polygon points="334,68 326,64 326,72" fill="var(--accent-editorial)" />
+              <text x="310" y="58" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="7.5" fill="var(--accent-editorial)">Publish</text>
+
+              <!-- Central Message Broker (Kafka / Queue) -->
+              <rect x="336" y="38" width="150" height="64" rx="5" fill="var(--accent-editorial)" />
+              <text x="411" y="58" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="700" fill="#FFFFFF">MESSAGE BROKER</text>
+              <text x="411" y="73" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8.5" fill="var(--accent-soft)">Apache Kafka / MQ</text>
+              <text x="411" y="89" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="7.5" fill="#FFFFFF">Event: [OrderPlaced #9812]</text>
+
+              <!-- Fan-out connectors from Broker to 3 Consumers -->
+              <!-- Branch 1: Payment -->
+              <line x1="486" y1="52" x2="538" y2="52" stroke="var(--border-strong)" stroke-width="1.3" />
+              <polygon points="544,52 537,49 537,55" fill="var(--border-strong)" />
+              
+              <!-- Branch 2: Inventory -->
+              <path d="M 486 70 L 538 98" stroke="var(--border-strong)" stroke-width="1.3" />
+              <polygon points="544,101 536,97 539,103" fill="var(--border-strong)" />
+
+              <!-- Branch 3: Notification -->
+              <path d="M 486 85 L 538 148" stroke="var(--border-strong)" stroke-width="1.3" />
+              <polygon points="544,153 536,148 540,154" fill="var(--border-strong)" />
+
+              <!-- Consumer 1: Payment -->
+              <rect x="546" y="36" width="134" height="34" rx="4" fill="var(--bg-subtle)" stroke="var(--border-strong)" stroke-width="1" />
+              <text x="613" y="51" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="9.5" font-weight="600" fill="var(--text-main)">Payment Service</text>
+              <text x="613" y="63" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="7.5" fill="var(--text-tertiary)">Consumes: Deduct ₹</text>
+
+              <!-- Consumer 2: Inventory -->
+              <rect x="546" y="82" width="134" height="34" rx="4" fill="var(--bg-subtle)" stroke="var(--border-strong)" stroke-width="1" />
+              <text x="613" y="97" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="9.5" font-weight="600" fill="var(--text-main)">Inventory Service</text>
+              <text x="613" y="109" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="7.5" fill="var(--text-tertiary)">Consumes: Stock -1</text>
+
+              <!-- Consumer 3: Notification -->
+              <rect x="546" y="128" width="134" height="34" rx="4" fill="var(--status-pass-bg)" stroke="var(--status-pass-border)" stroke-width="1" />
+              <text x="613" y="143" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="9.5" font-weight="600" fill="var(--status-pass)">Notification Service</text>
+              <text x="613" y="155" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="7.5" fill="var(--status-pass)">Consumes: Send SMS</text>
+
+              <!-- Complete Decoupling Callout Box -->
+              <rect x="20" y="112" width="490" height="92" rx="4" fill="var(--status-pass-bg)" stroke="var(--status-pass-border)" stroke-width="1" />
+              <text x="265" y="134" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="700" fill="var(--status-pass)">🛡️ COMPLETE DECOUPLING & ZERO BLOCKING</text>
+              <text x="265" y="154" text-anchor="middle" font-family="'Newsreader', serif" font-size="11.5" font-style="italic" fill="var(--text-secondary)">Order Service turant free ho gayi aur customer ko screen par turant confirmation mil gaya.</text>
+              <text x="265" y="172" text-anchor="middle" font-family="'Newsreader', serif" font-size="11.5" font-style="italic" fill="var(--text-secondary)">Agar SMS service 15 minute ke liye band bhi ho, toh event queue mein surakshit rehta hai!</text>
+              <text x="265" y="190" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8.5" fill="var(--status-pass)">Asynchronous Pub/Sub: Kisi ek service ki susti se poora system nahi rukta</text>
+            </g>
+          </svg>
+          <p class="diagram-caption">Tasveer 4: Baatcheet ke do tareeke — Synchronous model mein ek service doosri ka intezar karti hai aur atak sakti hai; Asynchronous model mein Kafka/Queue ke zariye har service azaadi se apna kaam karti hai.</p>
+        </div>
       </section>
 
       <!-- Section 6: The Dark Side -->

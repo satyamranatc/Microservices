@@ -24,6 +24,17 @@
   --accent-border: #CBD5E1;
   --accent-warm: #8C5338;          /* Muted Terracotta */
   --accent-warm-soft: #F9F3EE;
+
+  /* Diagram Status Tones */
+  --status-fail: #B91C1C;
+  --status-fail-bg: #FEF2F2;
+  --status-fail-border: #FECACA;
+  --status-pass: #15803D;
+  --status-pass-bg: #F0FDF4;
+  --status-pass-border: #BBF7D0;
+  --status-warn: #B45309;
+  --status-warn-bg: #FFFBEB;
+  --status-warn-border: #FDE68A;
   
   /* Typography Scale */
   --font-serif: "Newsreader", "Charter", "Georgia", serif;
@@ -56,6 +67,16 @@
     --accent-border: #324460;
     --accent-warm: #D98863;
     --accent-warm-soft: #2B211D;
+
+    --status-fail: #F87171;
+    --status-fail-bg: #2A1717;
+    --status-fail-border: #5A2020;
+    --status-pass: #4ADE80;
+    --status-pass-bg: #13271A;
+    --status-pass-border: #1E462B;
+    --status-warn: #FBBF24;
+    --status-warn-bg: #2B2312;
+    --status-warn-border: #523E16;
   }
 }
 
@@ -334,6 +355,8 @@ h3 {
   border-radius: 6px;
   padding: 32px 24px;
   margin: 44px 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .diagram-caption {
@@ -349,6 +372,7 @@ h3 {
 .diagram-svg {
   width: 100%;
   height: auto;
+  min-width: 620px;
   display: block;
 }
 
